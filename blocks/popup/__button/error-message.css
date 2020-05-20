@@ -1,0 +1,15 @@
+.error-message {
+  display: block;
+  position: relative;
+  bottom: -5px;
+  margin: 0;
+  padding: 0 6px 0;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  transition: 0.3s;
+}
+
+.error-message:last-of-type {
+  bottom: -5px;
+}

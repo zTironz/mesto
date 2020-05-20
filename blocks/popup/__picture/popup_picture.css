@@ -1,0 +1,14 @@
+.popup_picture {
+  max-width: 80vw;
+  max-height: 80vh;
+  display: flex;
+  object-fit: cover;
+  position: relative;
+  background-size: contain;
+}
+
+@media screen and (max-width: 540px) {
+  .popup_picture {
+    width: calc(100% - 60px);
+  }
+}
