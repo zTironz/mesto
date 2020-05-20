@@ -1,6 +1,4 @@
 import "./style.css";
-
-
 import UserInfo from './js/UserInfo';
 import {initialCards} from './js/initialCards';
 import Api from './js/Api';
@@ -67,10 +65,8 @@ function resetErr() {
   userValid.setEventListeners();
   formCard.addEventListener("submit", createCard);
   
-  
   const userInfoButton = document.querySelector(".user-info__button");
   userInfoButton.addEventListener("click", addCardPopup.open);
-  
   
   const userInfoEdit = document.querySelector(".user-info__edit");
   userInfoEdit.addEventListener("click", editPopup.open);
@@ -79,7 +75,6 @@ function resetErr() {
   const placesList = document.querySelector(".places-list");
   placesList.addEventListener("click", picturePopup.open);
 
-  
   const avatar = document.querySelector('.user-info__photo');
   const api = new Api({
     baseUrl: 'https://praktikum.tk/cohort10',
@@ -98,9 +93,7 @@ function resetErr() {
 
   const userInfo = new UserInfo(name, about, person, info, api, avatar, popupEdit);
   
-  
 
-  
   function editProfile(event) {
     event.preventDefault();
     userInfo.sendForm();

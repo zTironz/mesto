@@ -10,13 +10,7 @@ export default class CardList {
     const template = this.func(title, link);
     this.container.appendChild(template);
   }
-
-  // render() {
-  //   for (const elem of this.array) {
-  //     this.addCard(elem.title, elem.link);
-  //   }
-  // }
-
+  
   updateRender () {
     this.api
       .getCards()
