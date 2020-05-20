@@ -1,4 +1,4 @@
-class Api {
+export default class Api {
   // Отлично!: Параметры api передаются в конструкторе, а не дублируются в каждом запросе.
   constructor(options) {
       this.baseUrl = options.baseUrl;
