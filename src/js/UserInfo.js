@@ -1,11 +1,10 @@
-class UserInfo {
+export default class UserInfo {
   constructor(name, about, person, info, api, avatar, popupEdit) {
     this.name = name;
     this.about = about;
     this.person = person;
     this.info = info;
     this.api = api;
-    // this.setUserInfo();
     this.avatar = avatar;
     this.popupEdit = popupEdit;
   }
@@ -13,15 +12,11 @@ class UserInfo {
   setUserInfo() {
     this.api
       .getUserInfo()
-      .then(res => {
+      .then((res) => {
         if (res) {
-          // Можно лучше: Прямое использование глобальной переменной снижает переиспользование текущего класса,
-          // то есть, мы уже не сможем использовать его в разрыве от этой переменной.
-          // Чтобы избегать такой привязки можно либо преедавать переменную при создании текущего эксземпляра класса,
-          // либо использовать коллбэк-функцию, передавая обработку события наружу.
-          name.textContent = res.name;
-          about.textContent = res.about;
-          avatar.style.backgroundImage = `url(${res.avatar})`;
+          this.name.textContent = res.name;
+          this.about.textContent = res.about;
+          this.avatar.style.backgroundImage = `url(${res.avatar})`;
         } else {
           console.log("Ошибка: данные не найдены!");
         }

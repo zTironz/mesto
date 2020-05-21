@@ -1,4 +1,4 @@
-class Api {
+export default class Api {
   // Отлично!: Параметры api передаются в конструкторе, а не дублируются в каждом запросе.
   constructor(options) {
       this.baseUrl = options.baseUrl;
@@ -48,18 +48,3 @@ class Api {
 
 }
 
-
-
-// getJSONResponse(res) {
-//     if (res.ok) {
-//       return res.json();
-//     }
-//     return Promise.reject(`Ошибка: ${res.status}`);
-//   }
-//   getUserInfo() {
-//     return fetch(`${this.baseUrl}/users/me`, {
-//       headers: this.headers,
-//     })
-//     .then(res => this.getJSONResponse(res))
-//     .then((res) => {console.log(res);})
-//   }
