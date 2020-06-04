@@ -23,17 +23,48 @@ function resetErr() {
     buttonEdit.removeAttribute("disabled");
   }
   
-  function createCard(event) {
-    const formCard = document.forms.new;
-    const button = document.querySelector(".popup__button");
-    const { title, link } = formCard.elements;
-    event.preventDefault();
-    cardList.addCard(title.value, link.value);
-    formCard.reset();
-    popupNew.classList.remove("popup_is-opened");
-    button.classList.add("popup__button_disabled");
-    button.setAttribute("disabled", true);
-  }
+  // function createCard(event) {
+  // event.preventDefault();
+  //   const formCard = document.forms.new;
+  //   const button = document.querySelector(".popup__button");
+  //   const { title, link } = formCard.elements;
+  //   event.preventDefault();
+  //   cardList.addCard(title.value, link.value);
+  //   formCard.reset();
+  //   popupNew.classList.remove("popup_is-opened");
+  //   button.classList.add("popup__button_disabled");
+  //   button.setAttribute("disabled", true);
+  // }
+function createCard(event) {
+  event.preventDefault();
+  const button = document.querySelector(".popup__button");
+  button.classList.add("popup__button_type_new");
+  button.textContent = "Загрузка...";
+
+  api
+      .addNewCard(formCard.elements.title.value, formCard.elements.link.value)
+
+      .then(() => {
+        cardList.addCard(title.value, link.value);
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
+
+      .finally(function () {
+        formCard.reset();
+        popupNew.classList.remove("popup_is-opened");
+
+        button.classList.add("popup__button_disabled");
+        button.setAttribute("disabled", true);
+
+        button.classList.remove("popup__button_type_new");
+        button.textContent = "+";
+      });
+}
+
+
+
   
   // Можно лучше: Неиспользуемая переменные card.
   const card = () => new Card();
@@ -83,9 +114,7 @@ function resetErr() {
       'Content-Type': 'application/json'
     }
   });
-  
-  // Можно лучше: Неиспользуемая переменные formInfo.
-  const formInfo = document.forms.edit;
+
   const cardList = new CardList(placesList, initialCards, newCard, api);
   
   const name = document.querySelector(".user-info__name");
@@ -94,10 +123,33 @@ function resetErr() {
   const userInfo = new UserInfo(name, about, person, info, api, avatar, popupEdit);
   
 
-  function editProfile(event) {
-    event.preventDefault();
-    userInfo.sendForm();
-  }
+  // function editProfile(event) {
+  //   event.preventDefault();
+  //   userInfo.sendForm();
+  // }
+function editProfile(event) {
+  event.preventDefault();
+  userInfo.sendForm();
+  const buttonEdit = document.querySelector(".popup__button_type_new");
+  const { person, info } = formEdit.elements;
+  buttonEdit.textContent = "Загрузка...";
+
+  api
+      .updateInfo(formEdit.elements.person.value, formEdit.elements.info.value)
+
+      .then(() => {
+        userInfo.setUserInfo;
+        userInfo.updateUserInfo;
+      })
+
+      .catch(function (err) {
+        console.log(err);
+      })
+
+      .finally(function () {
+        buttonEdit.textContent = "Сохранить";
+      });
+}
   
   userInfo.setUserInfo();
   cardList.updateRender();
