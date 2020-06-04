@@ -1,6 +1,7 @@
 # mesto
 mesto project
 
+
 https://ztironz.github.io/mesto/
 
 Build Setup
@@ -16,4 +17,3 @@ $ npm run start
 
 # generate static project
 $ npm run generate
-
