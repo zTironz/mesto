@@ -1,8 +1,8 @@
 export default class Api {
-  // Отлично!: Параметры api передаются в конструкторе, а не дублируются в каждом запросе.
+
   constructor(options) {
       this.baseUrl = options.baseUrl;
-      // Можно лучше: Неиспользуемые переменные key и options.
+
       this.key = options.headers.authorization;
       this.options = options;
       this.headers = options.headers;
@@ -23,7 +23,6 @@ export default class Api {
       .catch(this.showError);
   }
 
-  // Отлично!: В метод передаются простые текстовые значения.
   updateInfo(name, about) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
@@ -36,12 +35,28 @@ export default class Api {
       .then(this.checkStatus)
       .catch(this.showError);
   }
-  // Отлично!: Проверка статуса вынесена в отдельную функцию и повторно используется.
+  addNewCard(title, link) {
+    return fetch(`${this.baseUrl}/cards`, {
+      method: "POST",
+      headers: this.headers,
+      body: JSON.stringify({
+        name: title,
+        link: link,
+      }),
+    })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(res);
+        })
+        .catch((err) => Promise.reject(new Error(`Ошибка: ${err.message}`)));
+  }
+
     checkStatus(res) {
         return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 
       }
-  // Отлично!: Показ ошибки вынесен в отдельную функцию и используется во всех вызовах к api.
     showError(err) {
         return console.log(err);
       }
