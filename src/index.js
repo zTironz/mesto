@@ -108,7 +108,7 @@ function createCard(event) {
 
   const avatar = document.querySelector('.user-info__photo');
   const api = new Api({
-    baseUrl: 'http://nomoreparties.co/cohort10',
+    baseUrl: 'https://nomoreparties.co/cohort10',
     headers: {
       authorization: 'ad968f0f-a2aa-4806-b662-e265b9c0a30a',
       'Content-Type': 'application/json'
